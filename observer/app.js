@@ -7,7 +7,7 @@ function extend( obj, extension ){
         extension[key] = obj[key];
     }
 }
-function addNewObserver(mainCheckbox, name){
+function addNewObserver( mainCheckbox, name){
     const subCheckbox = new Checkbox(name);
     extend( new Observer, subCheckbox);
 
@@ -17,7 +17,7 @@ function addNewObserver(mainCheckbox, name){
     mainCheckbox.AddObserver(subCheckbox);
     return subCheckbox;
 }
-function LogNotify(subCheckBoxs){
+function LogNotify( subCheckBoxs ){
     subCheckBoxs.forEach((checkbox)=>{
         checkbox.Checked();
     });
@@ -34,14 +34,18 @@ subCheckBoxs.push(addNewObserver(mainCheckbox, 'subCheckBox1'));
 subCheckBoxs.push(addNewObserver(mainCheckbox, 'subCheckBox2'));
 subCheckBoxs.push(addNewObserver(mainCheckbox, 'subCheckBox3'));
 
-mainCheckbox.Notify(true);
+const notify = function(boolean) {
+    mainCheckbox.Notify(boolean);
+};
+
+mainCheckbox.OnClick(notify);
 LogNotify(subCheckBoxs);
 
-mainCheckbox.Notify(false);
+mainCheckbox.OnClick(notify);
 LogNotify(subCheckBoxs);
 
 mainCheckbox.RemoveObserver(subCheckBoxs[0]);
-mainCheckbox.Notify(true);
+mainCheckbox.OnClick(notify);
 LogNotify(subCheckBoxs);
 
 process.exit();

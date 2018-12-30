@@ -1,3 +1,4 @@
+// ObserverList
 function ObserverList(){
     this.observerList = [];
 }
@@ -28,6 +29,7 @@ ObserverList.prototype.RemoveIndexAt = function( index ){
     this.observerList.splice(index, 1);
 }
 
+// Subject
 function Subject(){
     this.observers = new ObserverList();
 }

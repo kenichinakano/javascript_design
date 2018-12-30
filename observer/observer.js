@@ -1,6 +1,6 @@
 function Observer(){
     this.Update = function(){
-        //
+        // over load
     };
 }
 
